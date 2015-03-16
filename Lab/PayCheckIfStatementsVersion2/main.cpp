@@ -38,8 +38,10 @@ int main(int argc, char** argv) {
     //cin>>hrsWkd;
     
     payChk=payRate*hrsWkd;
-    payChk+=payRate*(hrsWkd+(oRate-1)*(hrsWkd));
-    
+    if(hrsWkd>=oTime)
+    {
+        payChk+=payRate*(hrsWkd+(oRate-1)*(hrsWkd));
+    }
     cout<<fixed<<setprecision(2)<<showpoint;
     
     
