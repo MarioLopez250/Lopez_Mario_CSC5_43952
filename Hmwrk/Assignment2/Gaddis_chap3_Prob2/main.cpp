@@ -9,6 +9,7 @@
 
 //System Libraries
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -37,6 +38,15 @@ int main(int argc, char** argv) {
     
     tSales=(classA*15)+(classB*12)+(classC*9);
     cout<<"The amount of money in tickets sales is "<<tSales<<endl;
+    double amount = 125.0;
+    //Page 1-41
+    
+        //cout << setw(6) << amount << endl;
+        //cout << showpoint;
+        //cout << setw(6) << amount << endl;
+
+        //cout << fixed << showpoint << setprecision(2);
+        //cout << setw(6) << amount << endl;
     
     
     return 0;
