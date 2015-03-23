@@ -3,7 +3,11 @@
  * Author: Mario Lopez
  *
  * Created on March 23, 2015, 9:36 AM
- *      Purpose: 
+ *      Purpose: To Illustrate the code for
+ * developing a menu
+ * Problem 1 -> Sum the numbers between 1 and 10
+ * Problem 2 -> Multiply the numbers between 1 and 10
+ * Problem 3 -> Divide the numbers between 1 and 10
  */
 
 //System Libraries

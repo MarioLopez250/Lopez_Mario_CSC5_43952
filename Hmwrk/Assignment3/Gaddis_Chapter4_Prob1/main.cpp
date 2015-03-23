@@ -1,19 +1,26 @@
 /* 
  * File:   main.cpp
- * Author: rcc
+ * Author: Mario Lopez
  *
  * Created on March 23, 2015, 10:19 AM
- */
-
-#include <cstdlib>
-
-using namespace std;
-
-/*
+ *      Purpose: Gaddis Chapter 4 Problem 1
  * 
  */
-int main(int argc, char** argv) {
 
+//System Library
+#include <iostream>
+using namespace std;
+
+//User Libraries
+
+//Global Constants
+
+//Function Prototypes
+
+//Execution Begins Here!!!
+int main(int argc, char** argv) {
+    
+    
     return 0;
 }
 
