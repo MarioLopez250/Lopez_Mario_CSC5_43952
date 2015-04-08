@@ -23,28 +23,27 @@ using namespace std;
 //Execution Begins Here
 int main(int argc, char** argv) {
     //Declare Variables 
-    float num;
-        
+    int num;
     //Prompt the user for input
     cout<<"Enter a positive integer value, "<<endl
         <<"and I will find the sum of all integer "
         <<"numbers from 1 to the number entered"<<endl;
     cin>>num;
+    if(num>0)
+    {
+    int sumNum;
+   int x;
+    for (x=0; x<num; x++)
     
-    do{
-   if (num>0)
- {
-  float sumNum;
-       
- cout<<"The sum of all integers numbers from 1 to "<<num<<" is"<<sumNum<<endl;
- }
- 
- else
-     cout<<"Enter a positive integer value"<<endl;
- 
- }while (num<num); 
-   
-
+    sumNum+=x;
+    
+    cout<<"The sum of all integers numbers from 1 to "
+        <<num<<" is "<<sumNum<<endl;
+    }
+    else
+    {
+    cout<<"Enter a positive integer value"<<endl;
+    }
 /*Write a program that asks the user for a positive integer value.
  *  The program should use
  * a loop to get the sum of all the integers from 1 up to the number entered. 
