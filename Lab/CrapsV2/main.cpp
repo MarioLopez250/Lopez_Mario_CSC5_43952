@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Mario Lopez
- * Created on April 29, 2015, 9:45 AM
+ * Created on May, 2015, 8:05 AM
  * Purpose:  Check out Dice Statisics
  */
 
@@ -18,7 +18,7 @@ using namespace std;
 //Function Prototypes
 unsigned char roll(unsigned char,unsigned char);
 
-//Execution begins here!!!
+//Execution begins here!
 int main(int argc, char** argv) {
     //Initialize the random number seed
     srand(static_cast<unsigned int>(time(0)));
@@ -74,4 +74,3 @@ unsigned char roll(unsigned char nDie,unsigned char sides){
     }
     return sum;
 }
-
