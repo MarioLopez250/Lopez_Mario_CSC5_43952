@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: rcc
- *Purpose: 
- * Created on May 4, 2015, 10:39 AM
+ * Author: Mario Lopez
+ *Purpose: Program the game BlackJack
+ * Created on May 2, 2015, 10:35 AM
  */
 
 #include <cstdlib>
@@ -16,10 +16,60 @@ using namespace std;
 
 int main(int argc, char** argv) {
     //Declare Variables 
-    cout<<"                                 Welcome to BlackJack!!!    "<<endl;
+    cout<<"                      Welcome to BlackJack!!!    "<<endl;
     //Cards 2-10 have their face values
     //J, Q, K are worth 10 points each 
     //Ace is worth either 1 or 11 player's choice
+    
+    int K = 10, J = 10, Q = 10;
+    ///////////////////////
+
+    //rand();
+    //int num = rand();
+    //int num2 = rand()%52; //would generate a completely random number
+    // between 0 and 52
+
+    int total=0;
+    int hits;
+    int cards;
+    int card;
+    
+    cards = rand() % 52 + 1;     // v2 in the range 1 to 52
+    cout<<cards<<endl;
+    
+        card = rand() % 10 + 1;
+        total = total + card;
+        cout << "You card is a : " << card << endl;
+        cout << "Your total is : " << total << endl;
+
+        if (total <= 21) 
+        {
+            cout << "YOU WIN !!! " << endl;
+        } 
+        else
+            cout << "YOU LOSE " << endl;
+       
+        char choice;
+        do
+        {
+         cout<<"Do you want to play again? \n"
+             <<"'Q' to Quit or Press 'C' to continue." << endl;
+         cin >> choice;
+        }
+        while((choice !='Q')&&(choice !='C')&&(choice !='q')&&(choice !='c'));
+   
+    //Create the Menu for the sum of cards
+    int input;
+    cin >> input;
+    switch (input)
+    {
+        case 1:
+            cout << "choice 1" ; break;
+        case 2:
+            cout << "choice 2" ; break;
+        default: 
+            cout << "Error" ;
+    }
     
 /* Although many players may play in a single round of blackjack, 
  * it's fundamentally a two-player game. 
