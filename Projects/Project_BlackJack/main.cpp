@@ -5,6 +5,7 @@
  * Created on May 2, 2015, 10:35 AM
  */
 
+//System Libraries
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
@@ -14,6 +15,13 @@
 
 using namespace std;
 
+//User Libraries
+
+//Global Constants
+
+//Function Prototypes
+
+//Execution Begins Here!!!!!
 int main(int argc, char** argv) {
     //Declare Variables 
     cout<<"                      Welcome to BlackJack!!!    "<<endl;
@@ -21,43 +29,30 @@ int main(int argc, char** argv) {
     //J, Q, K are worth 10 points each 
     //Ace is worth either 1 or 11 player's choice
     
-    int K = 10, J = 10, Q = 10;
-    ///////////////////////
-
-    //rand();
-    //int num = rand();
-    //int num2 = rand()%52; //would generate a completely random number
-    // between 0 and 52
-
-    int total=0;
-    int hits;
-    int cards;
-    int card;
     
-    cards = rand() % 52 + 1;     // v2 in the range 1 to 52
-    cout<<cards<<endl;
-    
-        card = rand() % 10 + 1;
-        total = total + card;
-        cout << "You card is a : " << card << endl;
-        cout << "Your total is : " << total << endl;
+    //Set the random number seed
+    srand(static_cast<unsigned int>(time(0)));
 
-        if (total <= 21) 
-        {
-            cout << "YOU WIN !!! " << endl;
-        } 
-        else
-            cout << "YOU LOSE " << endl;
-       
-        char choice;
-        do
-        {
-         cout<<"Do you want to play again? \n"
-             <<"'Q' to Quit or Press 'C' to continue." << endl;
-         cin >> choice;
-        }
-        while((choice !='Q')&&(choice !='C')&&(choice !='q')&&(choice !='c'));
+    unsigned int nGames,win=0,loss=0;
    
+    int K = 10, J = 10, Q = 10;
+   
+//set code in do-while loop so we can check if the player wants to play again
+       char choice;
+    do
+     {
+       //initialize totals to 0
+       int playTot = 0;    
+       int dealTot = 0;
+           
+    int card1 = rand()%11+1;
+    int card2 = rand()%11+1;//would generate a completely random number
+    //between 1 and 11
+    cout<<"Your cards are: "<<card1<<" and "<<card2<<endl;
+    playTot=card1+card2;
+    cout<<"Your hand Total is: "<<playTot<<endl;
+    cout<<"Your Total is: "<<card1+card2<<endl;
+       
     //Create the Menu for the sum of cards
     int input;
     cin >> input;
@@ -70,6 +65,31 @@ int main(int argc, char** argv) {
         default: 
             cout << "Error" ;
     }
+  
+    int dCard1 = rand() % 11 + 1;
+    int dCard2 = rand() % 11 + 1;
+    cout << "The Dealers cards are: "<<dCard1<<dCard2<<endl;
+    
+    cout<<"The Dealers cards are: "<<card1<<" and "<<card2<<endl;
+    playTot=card1+card2;
+    cout<<"The D hand Total is: "<<playTot<<endl;
+    cout<<"The Dealers Total is: "<<card1+card2<<endl;
+       
+      
+        if (playTot <= 21 && playTot>dealTot) 
+        {
+            cout << "YOU WIN !!! " << endl;
+        } 
+        else
+            cout << "YOU LOSE " << endl;
+        
+       
+         cout<<"Do you want to play again? \n"
+             <<"'Q' to Quit or Press 'C' to continue." << endl;
+         cin >> choice;
+        }
+        while((choice !='Q')&&(choice ='C')&&(choice !='q')&&(choice ='c'));
+   
     
 /* Although many players may play in a single round of blackjack, 
  * it's fundamentally a two-player game. 
@@ -81,8 +101,9 @@ int main(int argc, char** argv) {
  * The cards 2 through 10 have their face value,
  *  J, Q, and K are worth 10 points each, 
  * and the Ace is worth either 1 or 11 points (player's choice).
-  */  
- /*The player or players are dealt an initial two-card hand and add together 
+ */  
+ 
+  /*The player or players are dealt an initial two-card hand and add together 
   * the value of their cards. Face cards (kings, queens, and jacks) 
   * are counted as ten points. A player and the dealer can count
   *  their own ace as 1 point or 11 points. All other cards are counted as the 
@@ -96,7 +117,10 @@ int main(int argc, char** argv) {
   * called "soft", meaning that the player cannot go bust by taking
   *  an additional card; 11 plus the value of any other card will always be
   *  less than or equal to 21. 
- * Otherwise, the hand is "hard".*/
+  * Otherwise, the hand is "hard".*/
+    
+    //Exit stage right
+    
     return 0;
 }
 
