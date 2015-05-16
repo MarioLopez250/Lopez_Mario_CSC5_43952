@@ -23,74 +23,104 @@ using namespace std;
 
 //Execution Begins Here!!!!!
 int main(int argc, char** argv) {
-    //Declare Variables 
     cout<<"                      Welcome to BlackJack!!!    "<<endl;
     //Cards 2-10 have their face values
     //J, Q, K are worth 10 points each 
     //Ace is worth either 1 or 11 player's choice
     
-    
     //Set the random number seed
     srand(static_cast<unsigned int>(time(0)));
-
+    
+    //Declare Variables 
     unsigned int nGames,win=0,loss=0;
+
+    ofstream output;//Output the results in a file
    
     int K = 10, J = 10, Q = 10;
-   
-//set code in do-while loop so we can check if the player wants to play again
-       char choice;
+    //Open the file
+    output.open("GameStats.dat");
+    //set code in do-while loop so we can check if the player wants to play again
+    char choice;
     do
      {
        //initialize totals to 0
        int playTot = 0;    
        int dealTot = 0;
            
-    int card1 = rand()%11+1;
-    int card2 = rand()%11+1;//would generate a completely random number
-    //between 1 and 11
+    int card1 = rand()%13+1;
+    int card2 = rand()%13+1;//would generate a completely random number
+    //between 1 and 13
     cout<<"Your cards are: "<<card1<<" and "<<card2<<endl;
     playTot=card1+card2;
     cout<<"Your hand Total is: "<<playTot<<endl;
     cout<<"Your Total is: "<<card1+card2<<endl;
        
     //Create the Menu for the sum of cards
-    int input;
+    char input;
+    if(card1==1 || card1==11 || card2==1 || card2==11)
+    {
+    cout<<"You got an Ace!!! Would you like to use it as a 1 or 11?"<<endl;
+    cout<<"Enter 'A' for 1 or 'B' for 11"<<endl;
     cin >> input;
     switch (input)
     {
-        case 1:
-            cout << "choice 1" ; break;
-        case 2:
-            cout << "choice 2" ; break;
+        case 'A':
+            cout << "choice A you are going to use your Ace as a 1"<<endl;
+            playTot=playTot;
+            break;
+        case 'B':
+            cout << "choice B you are going to use your Ace as an 11"<<endl;
+            playTot+=10;
+            break;
         default: 
-            cout << "Error" ;
+            cout << "Error!!! Invalid input"<<endl;
     }
+    }
+    cout<<"Your Total is now: "<<playTot<<endl;
   
-    int dCard1 = rand() % 11 + 1;
-    int dCard2 = rand() % 11 + 1;
-    cout << "The Dealers cards are: "<<dCard1<<dCard2<<endl;
-    
-    cout<<"The Dealers cards are: "<<card1<<" and "<<card2<<endl;
-    playTot=card1+card2;
-    cout<<"The D hand Total is: "<<playTot<<endl;
-    cout<<"The Dealers Total is: "<<card1+card2<<endl;
+    int dCard1 = rand() % 13 + 1;
+    int dCard2 = rand() % 13 + 1;
+    cout<<"The Dealers cards are: "<<dCard1<<" and "<<dCard2<<endl;
+    dealTot=dCard1+dCard2;
+    cout<<"The Dealers hand Total is: "<<dealTot<<endl;
+    cout<<"The Dealers Total is: "<<dCard1+dCard2<<endl;
        
-      
         if (playTot <= 21 && playTot>dealTot) 
         {
             cout << "YOU WIN !!! " << endl;
         } 
-        else
-            cout << "YOU LOSE " << endl;
-        
-       
+        else if (dealTot<= 21 && dealTot>playTot)
+        {
+            cout << "The Dealer Wins " << endl;
+        }
+        else if (playTot>21 && dealTot<=21) 
+        {
+            cout << "YOU Bust !!! The Dealer wins" << endl;
+        } 
+        else if (dealTot> 21 && playTot<=21)
+        {
+            cout << "The Dealer Busts!!! You Win!!!" << endl;
+        }
+        else if(playTot==dealTot)
+        {
+            cout<<"You tied!!!"<<endl;
+        }
          cout<<"Do you want to play again? \n"
              <<"'Q' to Quit or Press 'C' to continue." << endl;
          cin >> choice;
+         
+         //Output the results to the file
+        output<<fixed<<setprecision(2)<<showpoint;
+        output<<"Your statistics for the BlackJack game!!! \n"<<endl;
+        output<<"Player total is: \n"
+              <<playTot<<endl;
+        output<<"Dealers total is: \n"
+              <<dealTot<<endl;
+        //Close the file
+        output.close();
         }
-        while((choice !='Q')&&(choice ='C')&&(choice !='q')&&(choice ='c'));
+        while((choice !='Q')&&(choice !='q')&&(choice ='C')&&(choice ='c'));
    
-    
 /* Although many players may play in a single round of blackjack, 
  * it's fundamentally a two-player game. 
  * In blackjack, players don't play against each other; 
