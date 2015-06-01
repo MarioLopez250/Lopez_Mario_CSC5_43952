@@ -102,16 +102,56 @@ int main(int argc, char** argv) {
     }
         cout<<"Your Total is now: "<<playTot<<endl;
     }
-    //cout<<"Your Total is now: "<<playTot<<endl;
-      cout<<endl;
+    cout<<"Your Total is: "<<playTot<<endl;
+    cout<<endl;
     
     int dCard1 = rand() % 13 + 1;
     int dCard2 = rand() % 13 + 1;
     cout<<"The Dealers cards are: "<<dCard1<<" and "<<dCard2<<endl;
     dealTot=dCard1+dCard2;
+   
+    //Create the Menu for the sum of cards
+    if(dCard1==11 || dCard2==11 || dCard1==12 || 
+       dCard2==12 || dCard1==13 || dCard2==13)
+    {
+    if(dCard1==11 || dCard2==11){
+        cout<<"The Dealer got a Jack!!!"<<endl;
+        dealTot=dealTot-1;
+        cout<<"The Dealer hand Total is: "<<dealTot<<endl;
+    }
+    if(dCard1==12 || dCard2==12 ){
+        cout<<"The Dealer got a King!!!"<<endl;
+        dealTot=dealTot-2;
+        cout<<"The Dealers hand Total is: "<<dealTot<<endl;
+    }
+    if(dCard1==13 || dCard2==13 ){
+        cout<<"The Dealer got a Queen!!!"<<endl;
+        dealTot=dealTot-3;
+        cout<<"The Dealers hand Total is: "<<dealTot<<endl;
+    }
+    }
+    //cout<<"The Dealers Total is now: "<<dealTot<<endl;
+    
+    //Create the Menu for the sum of cards
+    if(dCard1==1 || dCard2==1)
+    {
+    cout<<"The Dealer got an Ace!!!"<<endl;
+    if(dCard1<=10 || dCard2<=10)
+    {
+        dCard1=11;
+    cout << "The dealer is going to use the Ace as an 11"<<endl;
+            dealTot+=10;
+    }
+    else if(dCard1>=11 || dCard2>=1)
+    {
+        dCard1=1;
+    cout << "The dealer is going to use the Ace as a 1"<<endl;
+            dealTot=dealTot;
+    }
+    }
     cout<<"The Dealers hand Total is: "<<dealTot<<endl;
-    cout<<"The Dealers Total is: "<<dCard1+dCard2<<endl;
     cout<<endl;
+    ///////////////////////////////////////////////////////////////
        
         if (playTot <= 21 && playTot>dealTot) 
         {
@@ -138,8 +178,9 @@ int main(int argc, char** argv) {
              <<"'Q' to Quit or Press 'C' to continue." << endl;
          cin >> choice;
          cout<<endl;
-        
-         //Output the results to the file
+    cout<<"============================================================="<<endl;
+
+        //Output the results to the file
         output<<fixed<<setprecision(2)<<showpoint;
         output<<"Your statistics for the BlackJack game!!! \n"<<endl;
         cout<<endl;
@@ -152,7 +193,7 @@ int main(int argc, char** argv) {
         output.close();
         }
         while((choice !='Q')&&(choice !='q')&&(choice ='C')&&(choice ='c'));
-   
+
 /* Although many players may play in a single round of blackjack, 
  * it's fundamentally a two-player game. 
  * In blackjack, players don't play against each other; 
@@ -181,10 +222,8 @@ int main(int argc, char** argv) {
   *  less than or equal to 21. 
   * Otherwise, the hand is "hard".*/
     
-    //Exit stage right
+    //Exit Stage Right
     
-    
-
     return 0;
 }
 
