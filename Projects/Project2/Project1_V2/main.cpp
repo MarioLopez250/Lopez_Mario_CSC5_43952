@@ -6,6 +6,11 @@
  * Created on May 20, 2015, 9:56 AM
  */
 
+#include <algorithm>
+#include <vector>
+#include <bitset>
+
+
 //System Libraries
 #include <iostream>
 #include <cstdlib>
@@ -14,6 +19,9 @@
 #include <cmath>
 #include <ctime>
 
+#include <algorithm>
+#include <vector>
+#include <bitset>
 using namespace std;
 
 //User Libraries
@@ -21,6 +29,11 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
+void filAray(vector<int> &,int);
+void prntAry(vector<int> &,int,int);
+void markSrt(vector<int> &,int);
+int linSrch(vector<int> &,int n,int);
+
 
 //Execution Begins Here!!!
 int main(int argc, char** argv) {
@@ -33,7 +46,7 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
     
     //Declare Variables 
-    unsigned int nGames,win=0,loss=0;
+    unsigned int nGames=0,win=0,loss=0;
 
     ofstream output;//Output the results in a file
    
@@ -87,16 +100,19 @@ int main(int argc, char** argv) {
     cout<<"You got an Ace!!! Would you like to use it as a 1 or 11?"<<endl;
     cout<<"Enter 'A' for 1 or 'B' for 11"<<endl;
     cin >> input;
-    switch (input)
-    {
+    switch (input){
         case 'A':
+        case 'a':{
             cout << "choice A you are going to use your Ace as a 1"<<endl;
             playTot=playTot;
             break;
+        }
         case 'B':
+        case 'b':{
             cout << "choice B you are going to use your Ace as an 11"<<endl;
             playTot+=10;
             break;
+        }
         default: 
             cout << "Error!!! Invalid input"<<endl;
     }
@@ -152,22 +168,27 @@ int main(int argc, char** argv) {
     cout<<"The Dealers hand Total is: "<<dealTot<<endl;
     cout<<endl;
     ///////////////////////////////////////////////////////////////
-       
+    
+       //Now statistically count how many wins and losses
         if (playTot <= 21 && playTot>dealTot) 
         {
             cout << "YOU WIN !!! " << endl;
+            win++;
         } 
         else if (dealTot<= 21 && dealTot>playTot)
         {
             cout << "The Dealer Wins " << endl;
+            loss++;
         }
         else if (playTot>21 && dealTot<=21) 
         {
             cout << "YOU Bust !!! The Dealer wins" << endl;
+            loss++;
         } 
         else if (dealTot> 21 && playTot<=21)
         {
             cout << "The Dealer Busts!!! You Win!!!" << endl;
+            win++;
         }
         else if(playTot==dealTot)
         {
@@ -189,22 +210,22 @@ int main(int argc, char** argv) {
         cout<<endl;
         output<<"Dealers total is: \n"
               <<dealTot<<endl;
+        output<<"Your total wins are: "<<win<<endl;
+        output<<"Your total losses are: "<<loss<<endl;
         //Close the file
         output.close();
         }
         while((choice !='Q')&&(choice !='q')&&(choice ='C')&&(choice ='c'));
 
 /* Although many players may play in a single round of blackjack, 
- * it's fundamentally a two-player game. 
- * In blackjack, players don't play against each other; 
- * and they don't co-operate. The only competition is the dealer.
- * The aim of the game is to accumulate a higher point total than the dealer,
- *  but without going over 21. 
+ * it's fundamentally a two-player game. In blackjack,
+ * players don't play against each other; and they don't co-operate. 
+ * The only competition is the dealer. The aim of the game is to accumulate a 
+ * higher point total than the dealer, but without going over 21. 
  * You compute your score by adding the values of your individual cards.
- * The cards 2 through 10 have their face value,
- *  J, Q, and K are worth 10 points each, 
- * and the Ace is worth either 1 or 11 points (player's choice).
- */  
+ * The cards 2 through 10 have their face value J, Q, and K are worth 
+ * 10 points each, and the Ace is worth either 1 or 11 points (player's choice).
+*/  
  
   /*The player or players are dealt an initial two-card hand and add together 
   * the value of their cards. Face cards (kings, queens, and jacks) 
@@ -219,11 +240,78 @@ int main(int argc, char** argv) {
   * if the dealer busts. If a player holds an ace valued as 11, the hand is 
   * called "soft", meaning that the player cannot go bust by taking
   *  an additional card; 11 plus the value of any other card will always be
-  *  less than or equal to 21. 
-  * Otherwise, the hand is "hard".*/
+  *  less than or equal to 21. Otherwise, the hand is "hard".*/
     
     //Exit Stage Right
     
+        /*
+                ofstream out;//Output the results in a file
+                float vwdHrs;//Hours viewed (hrs)
+                char package;//Package AaBbCc
+                const int SIZE=40;//Max size of name = 39 characters
+                char name[SIZE];//Customer Name
+                float bill;//Cable Bill in $'s
+                //Open the file
+                out.open("Cable.dat");
+                //Prompt the user for inputs
+                cout<<"How many hours did you view this month?"<<endl;
+                cin>>vwdHrs;
+                cout<<"What is your package A,B,C"<<endl;
+                cin>>package;
+                cout<<"What is the customers name?"<<endl;
+                cin.ignore();
+                cin.getline(name,SIZE);
+                //Calculate the paycheck
+                
+         //Declare Variables
+                ofstream out;//Output the results in a file
+                float vwdHrs;//Hours viewed (hrs)
+                char package;//Package AaBbCc
+                const int SIZE=40;//Max size of name = 39 characters
+                char name[SIZE];//Customer Name
+                float bill;//Cable Bill in $'s
+                //Open the file
+                out.open("Cable.dat");
+                //Prompt the user for inputs
+                cout<<"How many hours did you view this month?"<<endl;
+                cin>>vwdHrs;
+                cout<<"What is your package A,B,C"<<endl;
+                cin>>package;
+                cout<<"What is the customers name?"<<endl;
+                cin.ignore();
+                cin.getline(name,SIZE);
+                //Calculate the paycheck
+                switch(package){
+                    case 'A':
+                    case 'a':{
+                        bill=9.95;
+                        if(vwdHrs>10)bill+=2*(vwdHrs-10);
+                        break;
+                    }
+                    case 'B':
+                    case 'b':{
+                        bill=14.95;
+                        if(vwdHrs>20)bill+=(vwdHrs-20);
+                        break;
+                    }
+                    case 'C':
+                    case 'c':{
+                        bill=19.95;
+                        break;
+                    }
+                    default:  cout<<"Wrong Package Chosen"<<endl;
+                };
+                //Output the results to the file
+                out<<fixed<<setprecision(2)<<showpoint;
+                out<<"Your Cable Bill From CSC5 RCC Programming Class"<<endl;
+                out<<"Customer Name: "<<name<<endl;
+                out<<"Package: "<<package<<endl;
+                out<<"Hours Viewed: "<<vwdHrs<<endl;
+                out<<"Amount Owed: $"<<bill<<endl;
+                //Close the file
+                out.close();
+                break;
+         */
+        
     return 0;
 }
-
